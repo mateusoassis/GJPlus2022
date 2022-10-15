@@ -6,8 +6,8 @@ public class CollisionChecking : MonoBehaviour
 {
     public bool seeCollisionGizmos;
     [SerializeField] private Vector2 bottomOffset, rightOffset, leftOffset;
-    [SerializeField] private bool onGround;
-    [SerializeField] private bool onWall;
+    public bool onGround;
+    public bool onWall;
     [SerializeField] private float collisionRadius;
     [SerializeField] private LayerMask groundLayer;
     

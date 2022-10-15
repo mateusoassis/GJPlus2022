@@ -739,6 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseManagerScript: {fileID: 89011663}
+  collisionCheckingScript: {fileID: 391439286}
   direction: {x: 0, y: 0}
   xRawMovement: 0
   yRawMovement: 0
@@ -747,6 +748,9 @@ MonoBehaviour:
   jumpVelocity: 9
   fallMultiplier: 4
   lowJumpMultiplier: 7
+  slideSpeed: 5
+  wallGrabKey: 304
+  wallGrab: 0
 --- !u!61 &391439284
 BoxCollider2D:
   m_ObjectHideFlags: 0

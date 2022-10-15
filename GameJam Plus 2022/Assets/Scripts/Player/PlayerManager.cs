@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private PauseManager pauseManagerScript;
+    [SerializeField] private CollisionChecking collisionCheckingScript;
 
     [Header("Tipo de movimentação")]
     private float xInput;
@@ -22,6 +23,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float jumpVelocity;
     [SerializeField] private float fallMultiplier;
     [SerializeField] private float lowJumpMultiplier;
+
+    [Header("Wall Slide")]
+    [SerializeField] private float slideSpeed;
+
+    [Header("Wall Grab")]
+    [SerializeField] private KeyCode wallGrabKey;
+    public bool wallGrab;
     
     void Start()
     {
@@ -72,6 +80,8 @@ public class PlayerManager : MonoBehaviour
         {
             Jump();
         }
+
+        wallGrab = collisionCheckingScript.onWall && Input.GetKey(wallGrabKey);
     }
 
     private void Jump()
@@ -80,8 +90,21 @@ public class PlayerManager : MonoBehaviour
         rb.velocity += Vector2.up * jumpVelocity;
     }
 
+    private void WallSlide()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, -slideSpeed);
+    }
+
     void FixedUpdate()
     {
         rb.velocity = new Vector2(direction.x * playerSpeed, rb.velocity.y);
-    }
+        if(collisionCheckingScript.onWall && !collisionCheckingScript.onGround)
+        {
+            WallSlide();
+        }
+        if(wallGrab)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, yInput * playerSpeed);
+        }
+    }    
 }
