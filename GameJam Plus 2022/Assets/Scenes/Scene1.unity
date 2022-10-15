@@ -631,7 +631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197409073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.43, y: 0.0245, z: 0}
+  m_LocalPosition: {x: -8.86, y: 0.0245, z: 0}
   m_LocalScale: {x: 1, y: 10.036182, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -739,18 +739,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseManagerScript: {fileID: 89011663}
-  collisionCheckingScript: {fileID: 391439286}
-  direction: {x: 0, y: 0}
-  xRawMovement: 0
-  yRawMovement: 0
+  colScript: {fileID: 391439286}
+  jumpKey: 32
+  wallGrabKey: 122
+  dashKey: 120
+  walkDirection: {x: 0, y: 0}
   rb: {fileID: 391439285}
-  playerSpeed: 10
-  jumpVelocity: 9
-  fallMultiplier: 4
-  lowJumpMultiplier: 7
+  walkSpeed: 8
+  jumpForce: 12
+  fallMultiplier: 5
+  lowJumpMultiplier: 9
+  fallGravity: 1
+  wallJumpDir: {x: 0, y: 0}
   slideSpeed: 5
-  wallGrabKey: 304
-  wallGrab: 0
+  dashSpeed: 50
+  canMove: 1
+  groundTouch: 0
+  wallJumped: 0
+  wallGrabbed: 0
+  wallSlide: 0
+  isDashing: 0
+  hasDashed: 0
 --- !u!61 &391439284
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -792,7 +801,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -816,6 +825,8 @@ MonoBehaviour:
   leftOffset: {x: -0.4, y: 0}
   onGround: 1
   onWall: 0
+  onRightWall: 0
+  onLeftWall: 0
   collisionRadius: 0.17
   groundLayer:
     serializedVersion: 2
@@ -1009,7 +1020,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955918493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.43, y: 0.0245, z: 0}
+  m_LocalPosition: {x: 8.93, y: 0.0245, z: 0}
   m_LocalScale: {x: 1, y: 10.036182, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

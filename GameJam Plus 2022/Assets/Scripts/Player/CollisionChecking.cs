@@ -8,6 +8,8 @@ public class CollisionChecking : MonoBehaviour
     [SerializeField] private Vector2 bottomOffset, rightOffset, leftOffset;
     public bool onGround;
     public bool onWall;
+    public bool onRightWall;
+    public bool onLeftWall;
     [SerializeField] private float collisionRadius;
     [SerializeField] private LayerMask groundLayer;
     
@@ -20,8 +22,16 @@ public class CollisionChecking : MonoBehaviour
     void Update()
     {
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
-        onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer) 
-                || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
+        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer); 
+        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
+        if(onRightWall || onLeftWall)
+        {
+            onWall = true;
+        }
+        else
+        {
+            onWall = false;
+        }
     }
 
     void OnDrawGizmos()
