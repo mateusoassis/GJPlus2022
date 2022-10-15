@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private PauseManager pauseManagerScript;
     [SerializeField] private CollisionChecking colScript;
+    [SerializeField] private StaminaHandler stamHandler;
 
     [Header("Keybinds")]
     [SerializeField] private KeyCode jumpKey;
@@ -47,6 +48,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private bool wallSlide;
     [SerializeField] private bool isDashing;
     [SerializeField] private bool hasDashed;
+    [SerializeField] private bool jumping;
 
 
     // jump~~~~~~~~~~
@@ -67,9 +69,10 @@ public class PlayerManager : MonoBehaviour
         {
             wallGrabbed = true;
             wallSlide = false;
+            jumping = false;
         }
 
-        if(Input.GetKeyUp(wallGrabKey) || !colScript.onWall || !canMove)
+        if((Input.GetKeyUp(wallGrabKey) || !colScript.onWall || !canMove))
         {
             wallGrabbed = false;
             wallSlide = false;
@@ -88,7 +91,7 @@ public class PlayerManager : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x , 0);
             }
-            rb.velocity = new Vector2(rb.velocity.x, yInput * walkSpeed);
+            rb.velocity = new Vector2(rb.velocity.x, 0);
         }
         else
         {
@@ -100,6 +103,7 @@ public class PlayerManager : MonoBehaviour
             if(xInput != 0 && !wallGrabbed)
             {
                 wallSlide = true;
+                jumping = false;
                 WallSlide();
             }
         }
@@ -110,15 +114,22 @@ public class PlayerManager : MonoBehaviour
             if(colScript.onGround)
             {
                 Jump(Vector2.up, false);
+                Debug.Log("jumping tru");
+                jumping = true;
+                wallGrabbed = false;
+                wallSlide = false;
             }
             if(colScript.onWall && !colScript.onGround)
             {
                 WallJump();
+                Debug.Log("jumping tru");
+                jumping = true;
             }
         }
 
-        if(Input.GetKeyDown(dashKey) && !hasDashed)
+        if(Input.GetKeyDown(dashKey) && !hasDashed && (colScript.onGround || colScript.onWall))
         {
+            //if(stamHandler.dashCost)
             if(xRawInput != 0 || yRawInput != 0)
             {
                 Dash(xRawInput, yRawInput);
@@ -140,6 +151,7 @@ public class PlayerManager : MonoBehaviour
     {
         hasDashed = false;
         isDashing = false;
+        jumping = false;
     }
 
     private void Dash(float x, float y)
@@ -205,14 +217,26 @@ public class PlayerManager : MonoBehaviour
 
     private void WallJump()
     {
-        StopCoroutine(DisableMovement(0));
-        StartCoroutine(DisableMovement(.1f));
+        if(xInput == 0)
+        {
+            wallJumped = true;
+            StopCoroutine(DisableMovement(0));
+            StartCoroutine(DisableMovement(.1f));
 
-        Vector2 wallDir = colScript.onRightWall ? Vector2.left : Vector2.right;
+            //Vector2 wallDir = colScript.onRightWall ? Vector2.left : Vector2.right;
 
-        Jump((Vector2.up / 1.5f + wallDir / 1.5f), true);
+            Jump((Vector2.up / 1.5f/* + wallDir / 1.5f*/), true);
 
-        wallJumped = true;
+            wallJumped = false;
+        }
+        else if(xInput > 0 && colScript.onLeftWall)
+        {
+            Dash(1, 1);
+        }
+        else if(xInput < 0 && colScript.onRightWall)
+        {
+            Dash(-1, 1);
+        }
     }
 
     private void WallSlide()
@@ -267,21 +291,6 @@ public class PlayerManager : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += Vector2.up * jumpForce;
     }
-    /*
-    private void CheckWhichWallGrabbing()
-    {
-        if(colScript.onRightWall)
-        {
-            wallJumpDir = Vector2.left;
-        }
-        else if(colScript.onLeftWall)
-        {
-            wallJumpDir = Vector2.right;
-        }
-        //StopCoroutine(DisableMovement(0));
-        //StartCoroutine(DisableMovement(0.3f));
-    }
-    */
 
     void RigidbodyDrag(float x)
     {
