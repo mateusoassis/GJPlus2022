@@ -67,15 +67,25 @@ public class PlayerManager : MonoBehaviour
 
         if(colScript.onWall && Input.GetKey(wallGrabKey) && canMove)
         {
-            wallGrabbed = true;
-            wallSlide = false;
-            jumping = false;
+            if(stamHandler.currentStamina > 0)
+            {
+                wallGrabbed = true;
+                wallSlide = false;
+                jumping = false;
+                stamHandler.StartDegen();
+            }
+            else
+            {
+                wallGrabbed = false;
+            }
+
         }
 
         if((Input.GetKeyUp(wallGrabKey) || !colScript.onWall || !canMove))
         {
             wallGrabbed = false;
             wallSlide = false;
+            stamHandler.StopDegen();
         }
 
         if(colScript.onGround && !isDashing)
@@ -118,6 +128,7 @@ public class PlayerManager : MonoBehaviour
                 jumping = true;
                 wallGrabbed = false;
                 wallSlide = false;
+                stamHandler.StopDegen();
             }
             if(colScript.onWall && !colScript.onGround)
             {
@@ -129,11 +140,14 @@ public class PlayerManager : MonoBehaviour
 
         if(Input.GetKeyDown(dashKey) && !hasDashed && (colScript.onGround || colScript.onWall))
         {
-            //if(stamHandler.dashCost)
-            if(xRawInput != 0 || yRawInput != 0)
+            if(stamHandler.dashCost < stamHandler.currentStamina)
             {
-                Dash(xRawInput, yRawInput);
-            }
+                if(xRawInput != 0 || yRawInput != 0)
+                {
+                    Dash(xRawInput, yRawInput);
+                    stamHandler.CastDash();
+                }    
+            } 
         }
 
         if(colScript.onGround && !groundTouch)
@@ -219,23 +233,37 @@ public class PlayerManager : MonoBehaviour
     {
         if(xInput == 0)
         {
-            wallJumped = true;
-            StopCoroutine(DisableMovement(0));
-            StartCoroutine(DisableMovement(.1f));
+            if(stamHandler.jumpCost < stamHandler.currentStamina)
+            {
+                wallJumped = true;
+                StopCoroutine(DisableMovement(0));
+                StartCoroutine(DisableMovement(.1f));
 
-            //Vector2 wallDir = colScript.onRightWall ? Vector2.left : Vector2.right;
+                //Vector2 wallDir = colScript.onRightWall ? Vector2.left : Vector2.right;
 
-            Jump((Vector2.up / 1.5f/* + wallDir / 1.5f*/), true);
-
-            wallJumped = false;
+                Jump((Vector2.up / 1.5f/* + wallDir / 1.5f*/), true);
+                
+                wallJumped = false;
+                stamHandler.CastJump();
+            }
+            
         }
         else if(xInput > 0 && colScript.onLeftWall)
         {
-            Dash(1, 1);
+            if(stamHandler.dashCost < stamHandler.currentStamina)
+            {
+                Dash(1, 1);  
+                stamHandler.CastDash(); 
+            } 
+           
         }
         else if(xInput < 0 && colScript.onRightWall)
         {
-            Dash(-1, 1);
+            if(stamHandler.dashCost < stamHandler.currentStamina)
+            {
+                Dash(-1, 1);
+                stamHandler.CastDash();
+            }
         }
     }
 
@@ -288,8 +316,11 @@ public class PlayerManager : MonoBehaviour
 
     private void Jump(Vector2 jumpDirection, bool onWall)
     {
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += Vector2.up * jumpForce;
+        //if(stamHandler.jumpCost < stamHandler.currentStamina)
+        //{
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.velocity += Vector2.up * jumpForce;    
+        //}
     }
 
     void RigidbodyDrag(float x)

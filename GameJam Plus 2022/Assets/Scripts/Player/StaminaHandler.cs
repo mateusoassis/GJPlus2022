@@ -9,9 +9,10 @@ public class StaminaHandler : MonoBehaviour
     [SerializeField] private float imageFillAmount;
 
     [SerializeField] private float maxStamina;
-    [SerializeField][Range(0,100)] private float currentStamina;
+    [Range(0,100)] public float currentStamina;
     [SerializeField] private float staminaRegenPerSecond;
-    [SerializeField] private float dashCost;
+    public float dashCost;
+    public float jumpCost;
     [SerializeField] private float degenPerSecond;
 
     [SerializeField] private bool degen;
@@ -54,6 +55,10 @@ public class StaminaHandler : MonoBehaviour
     {
         degen = true;
     }
+    public void StopDegen()
+    {
+        degen = false;
+    }
 
     public void UpdateImageFillAmount()
     {
@@ -66,6 +71,13 @@ public class StaminaHandler : MonoBehaviour
         if(dashCost < currentStamina)
         {
             currentStamina -= dashCost;
+        }
+    }
+    public void CastJump()
+    {
+        if(jumpCost < currentStamina)
+        {
+            currentStamina -= jumpCost;
         }
     }
 }
