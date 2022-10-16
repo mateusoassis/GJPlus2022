@@ -32,6 +32,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float fallMultiplier;
     [SerializeField] private float lowJumpMultiplier;
     [SerializeField] private bool fallGravity;
+    [SerializeField] private float targetGravity;
     
     [Header("Wall Jump")]
     [SerializeField] private Vector2 wallJumpDir;
@@ -116,7 +117,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 3;
+            rb.gravityScale = targetGravity;
         }
 
         if(colScript.onWall && !colScript.onGround)
@@ -239,7 +240,7 @@ public class PlayerManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
 
-        rb.gravityScale = 3;
+        rb.gravityScale = targetGravity;
         fallGravity = true;
         wallJumped = false;
         isDashing = false;

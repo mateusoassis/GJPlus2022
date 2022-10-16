@@ -1519,6 +1519,7 @@ MonoBehaviour:
   fallMultiplier: 6
   lowJumpMultiplier: 12
   fallGravity: 1
+  targetGravity: 3
   wallJumpDir: {x: 0, y: 0}
   slideSpeed: 5
   dashSpeed: 80
@@ -1705,6 +1706,48 @@ MonoBehaviour:
     loop: 0
   - name: Step3
     clip: {fileID: 8300000, guid: b3416c04b7b30f542a8127185b4213b4, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: MoveOption
+    clip: {fileID: 8300000, guid: 2166da7f650243b43afeb8861364895a, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: SelectOption
+    clip: {fileID: 8300000, guid: 7510a29424071d94b857bf87945118b7, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: WallGrab
+    clip: {fileID: 8300000, guid: fabbf53ddfc289441a1acd7bedee7ce5, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: DashSound
+    clip: {fileID: 8300000, guid: 70cad1441c1d8264bb2c1978a19c8a06, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: DeathSound
+    clip: {fileID: 8300000, guid: 82e4a933da00c3549baaa5807ff7b1b5, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: DialogueSound
+    clip: {fileID: 8300000, guid: 0b388f6f373b7eb44a485df2d1d9f138, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: LoseSound
+    clip: {fileID: 8300000, guid: 893900aabe1f63643a03d2cdce08df8c, type: 3}
     source: {fileID: 0}
     volume: 0.6
     pitch: 1
@@ -6739,7 +6782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07cf63c62a23f2a4b96452c972633f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 391439282}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10180,6 +10223,7 @@ MonoBehaviour:
   - {fileID: 2082368587}
   - {fileID: 173269826}
   disabled: 1
+  sound: {fileID: 435940812}
 --- !u!1 &1987448666
 GameObject:
   m_ObjectHideFlags: 0

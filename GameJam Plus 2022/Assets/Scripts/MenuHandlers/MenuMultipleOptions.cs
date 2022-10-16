@@ -9,6 +9,7 @@ public class MenuMultipleOptions : MonoBehaviour
     public int selectedButton;
     [SerializeField] private MenuOption[] menuOption;
     [SerializeField] private bool disabled;
+    [SerializeField] private AudioClipManager sound;
 
     void Update()
     {
@@ -17,6 +18,7 @@ public class MenuMultipleOptions : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.DownArrow))
             {
                 selectedButton++;
+                sound.PlayOneShot("MoveOption");
                 if(selectedButton == menuOption.Length)
                 {
                     menuOption[menuOption.Length - 1].mouseOver = false;
@@ -26,6 +28,7 @@ public class MenuMultipleOptions : MonoBehaviour
             else if(Input.GetKeyDown(KeyCode.UpArrow))
             {
                 selectedButton--;
+                sound.PlayOneShot("MoveOption");
                 if(selectedButton < 0)
                 {
                     menuOption[0].mouseOver = false;
@@ -48,6 +51,7 @@ public class MenuMultipleOptions : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return))
         {
             menuOption[selectedButton].gameObject.GetComponent<Button>().onClick.Invoke();
+            sound.PlayOneShot("SelectOption");
         }
     }
     public void UpdateButtons()
