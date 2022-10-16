@@ -74,6 +74,11 @@ public class PlayerManager : MonoBehaviour
             if(stamHandler.currentStamina > 0)
             {
                 wallGrabbed = true;
+                anim.SetBool("idle", false);
+                anim.SetBool("walking", false);
+                anim.SetBool("wallgrab", true);
+                anim.SetBool("jumping", false);
+                anim.SetBool("dashing", false);
                 wallSlide = false;
                 jumping = false;
                 stamHandler.StartDegen();
@@ -90,6 +95,7 @@ public class PlayerManager : MonoBehaviour
             wallGrabbed = false;
             wallSlide = false;
             stamHandler.StopDegen();
+            anim.SetBool("wallgrab", false);
         }
 
         if(colScript.onGround && !isDashing)
@@ -128,7 +134,6 @@ public class PlayerManager : MonoBehaviour
             if(colScript.onGround)
             {
                 Jump(Vector2.up, false);
-                Debug.Log("jumping tru");
                 jumping = true;
                 wallGrabbed = false;
                 wallSlide = false;
@@ -137,7 +142,6 @@ public class PlayerManager : MonoBehaviour
             if(colScript.onWall && !colScript.onGround)
             {
                 WallJump();
-                Debug.Log("jumping tru");
                 jumping = true;
             }
         }
@@ -148,9 +152,22 @@ public class PlayerManager : MonoBehaviour
             {
                 if(xRawInput != 0 || yRawInput != 0)
                 {
-                    Dash(xRawInput, yRawInput);
+                    Dash(xRawInput, yRawInput, true);
                     stamHandler.CastDash();
-                }    
+                }
+                else
+                {
+                    if(facingRight)
+                    {
+                        Dash(1,0, true);
+                        stamHandler.CastDash();
+                    }
+                    else
+                    {
+                        Dash(-1,0, true);
+                        stamHandler.CastDash();
+                    }
+                } 
             } 
         }
 
@@ -170,11 +187,33 @@ public class PlayerManager : MonoBehaviour
         hasDashed = false;
         isDashing = false;
         jumping = false;
+        anim.SetBool("falling", false);
     }
 
-    private void Dash(float x, float y)
+    private void Dash(float x, float y, bool dashing)
     {
         hasDashed = true;
+
+        if(dashing == true)
+        {
+            Debug.Log("dash normal");
+            anim.SetBool("idle", false);
+            anim.SetBool("walking", false);
+            anim.SetBool("wallgrab", false);
+            anim.SetBool("jumping", false);
+            anim.SetBool("dashing", true);
+        }
+        else
+        {
+            Debug.Log("jump da parede");
+            anim.SetBool("idle", false);
+            anim.SetBool("walking", false);
+            anim.SetBool("wallgrab", false);
+            anim.SetBool("jumping", true);
+            anim.SetBool("dashing", false);
+            wallGrabbed = false;
+        }
+        
 
         rb.velocity = Vector2.zero;
         Vector2 direction = new Vector2(x, y);
@@ -240,6 +279,13 @@ public class PlayerManager : MonoBehaviour
             if(stamHandler.jumpCost < stamHandler.currentStamina)
             {
                 wallJumped = true;
+                /*
+                anim.SetBool("idle", false);
+                anim.SetBool("walking", false);
+                anim.SetBool("wallgrab", false);
+                anim.SetBool("jumping", true);
+                anim.SetBool("dashing", false);
+                */
                 StopCoroutine(DisableMovement(0));
                 StartCoroutine(DisableMovement(.1f));
 
@@ -256,7 +302,7 @@ public class PlayerManager : MonoBehaviour
         {
             if(stamHandler.dashCost < stamHandler.currentStamina)
             {
-                Dash(1, 1);  
+                Dash(1, 1, false);
                 stamHandler.CastDash(); 
             } 
            
@@ -265,7 +311,7 @@ public class PlayerManager : MonoBehaviour
         {
             if(stamHandler.dashCost < stamHandler.currentStamina)
             {
-                Dash(-1, 1);
+                Dash(-1, 1, false);
                 stamHandler.CastDash();
             }
         }
@@ -320,11 +366,13 @@ public class PlayerManager : MonoBehaviour
 
     private void Jump(Vector2 jumpDirection, bool onWall)
     {
-        //if(stamHandler.jumpCost < stamHandler.currentStamina)
-        //{
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.velocity += Vector2.up * jumpForce;    
-        //}
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.velocity += Vector2.up * jumpForce;   
+        anim.SetBool("idle", false);
+        anim.SetBool("walking", false);
+        anim.SetBool("wallgrab", false);
+        anim.SetBool("jumping", true);
+        anim.SetBool("dashing", false);
     }
 
     void RigidbodyDrag(float x)
@@ -343,35 +391,77 @@ public class PlayerManager : MonoBehaviour
     {
         if(colScript.onGround)
         {
-            if(xInput == 0)
+            if(xInput == 0 && !isDashing && !jumping)
             {
                 anim.SetBool("idle", true);
                 anim.SetBool("walking", false);
+                anim.SetBool("wallgrab", false);
+                anim.SetBool("jumping", false);
+                anim.SetBool("dashing", false);
             }
-            else
+            else if(xInput != 0 && !isDashing && !jumping)
             {
                 anim.SetBool("idle", false);
                 anim.SetBool("walking", true);
+                anim.SetBool("wallgrab", false);
+                anim.SetBool("jumping", false);
+                anim.SetBool("dashing", false);
             }
-        } 
-    }
-    private void HandleFlipXScale()
-    {
-        if(xInput > 0)
-        {
-            facingRight = true;
-        }
-        if(xInput < 0)
-        {
-            facingRight = false;
-        }
-        if(facingRight)
-        {
-            anim.gameObject.transform.localScale = new Vector3(localScaleSaved.x, localScaleSaved.y, localScaleSaved.z);
         }
         else
         {
-            anim.gameObject.transform.localScale = new Vector3(-localScaleSaved.x, localScaleSaved.y, localScaleSaved.z);
+            if(jumping && rb.velocity.y < 0)
+            {
+                anim.SetBool("jumping", false);
+                anim.SetBool("falling", true);
+            }
+            else if(wallGrabbed && !groundTouch && !jumping)
+            {
+                anim.SetBool("idle", false);
+                anim.SetBool("walking", false);
+                anim.SetBool("wallgrab", true);
+                anim.SetBool("jumping", false);
+                anim.SetBool("dashing", false);
+            }
+            else if(wallJumped && !groundTouch)
+            {
+                anim.SetBool("idle", false);
+                anim.SetBool("walking", false);
+                anim.SetBool("wallgrab", false);
+                anim.SetBool("jumping", false);
+                anim.SetBool("dashing", true);
+            }
+            if(!jumping && !groundTouch)
+            {
+                anim.SetBool("idle", false);
+                anim.SetBool("walking", false);
+                anim.SetBool("wallgrab", false);
+                anim.SetBool("jumping", false);
+                anim.SetBool("dashing", false);
+                anim.SetBool("falling", true);
+            }
+        }
+    }
+    private void HandleFlipXScale()
+    {
+        if((colScript.onGround || !groundTouch || isDashing) && !wallGrabbed)
+        {
+            if(xInput > 0)
+            {
+                facingRight = true;
+            }
+            if(xInput < 0)
+            {
+                facingRight = false;
+            }
+            if(facingRight)
+            {
+                anim.gameObject.transform.localScale = new Vector3(localScaleSaved.x, localScaleSaved.y, localScaleSaved.z);
+            }
+            else
+            {
+                anim.gameObject.transform.localScale = new Vector3(-localScaleSaved.x, localScaleSaved.y, localScaleSaved.z);
+            }
         }
     }
 }

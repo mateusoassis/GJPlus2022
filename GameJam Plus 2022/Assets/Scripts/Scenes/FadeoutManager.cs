@@ -6,4 +6,5 @@ using UnityEngine.UI;
 public class FadeoutManager : MonoBehaviour
 {
     [SerializeField] private Image image;
+    [SerializeField] private YouLose youLoseScript;
 }
