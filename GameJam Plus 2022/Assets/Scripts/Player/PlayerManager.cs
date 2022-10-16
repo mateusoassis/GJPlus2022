@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PauseManager pauseManagerScript;
     [SerializeField] private CollisionChecking colScript;
     [SerializeField] private StaminaHandler stamHandler;
+    [SerializeField] private Animator anim;
 
     [Header("Keybinds")]
     [SerializeField] private KeyCode jumpKey;
@@ -40,6 +41,9 @@ public class PlayerManager : MonoBehaviour
     [Header("Dash")]
     [SerializeField] private float dashSpeed;
 
+    [Header("LocalScale")]
+    [SerializeField] private Vector3 localScaleSaved;
+
     [Header("Player Flags")]
     [SerializeField] private bool canMove;
     [SerializeField] private bool groundTouch;
@@ -49,19 +53,19 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private bool isDashing;
     [SerializeField] private bool hasDashed;
     [SerializeField] private bool jumping;
+    [SerializeField] private bool facingRight;
 
-
-    // jump~~~~~~~~~~
-    // wall grab
-    // wall slide
-    // dash
-    // wall dash
+    void Start()
+    {
+        localScaleSaved = anim.gameObject.transform.localScale;
+    }
 
     void Update()
     {
         FallGravityModifier();
         HandleInputs();
-
+        HandleAnimations();
+        HandleFlipXScale();
         
         Walk(walkDirection);
 
@@ -333,5 +337,41 @@ public class PlayerManager : MonoBehaviour
         canMove = false;
         yield return new WaitForSeconds(time);
         canMove = true;
+    }
+
+    private void HandleAnimations()
+    {
+        if(colScript.onGround)
+        {
+            if(xInput == 0)
+            {
+                anim.SetBool("idle", true);
+                anim.SetBool("walking", false);
+            }
+            else
+            {
+                anim.SetBool("idle", false);
+                anim.SetBool("walking", true);
+            }
+        } 
+    }
+    private void HandleFlipXScale()
+    {
+        if(xInput > 0)
+        {
+            facingRight = true;
+        }
+        if(xInput < 0)
+        {
+            facingRight = false;
+        }
+        if(facingRight)
+        {
+            anim.gameObject.transform.localScale = new Vector3(localScaleSaved.x, localScaleSaved.y, localScaleSaved.z);
+        }
+        else
+        {
+            anim.gameObject.transform.localScale = new Vector3(-localScaleSaved.x, localScaleSaved.y, localScaleSaved.z);
+        }
     }
 }
