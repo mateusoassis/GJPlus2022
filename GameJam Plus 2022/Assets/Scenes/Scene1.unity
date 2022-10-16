@@ -6783,6 +6783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 391439282}
+  maxYDistance: 2
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
