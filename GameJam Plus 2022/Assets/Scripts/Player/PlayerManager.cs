@@ -231,7 +231,7 @@ public class PlayerManager : MonoBehaviour
 
     private void WallJump()
     {
-        if(xInput == 0)
+        if(xInput == 0 || ((xInput > 0 && !colScript.onLeftWall) || (xInput < 0 && !colScript.onRightWall)))
         {
             if(stamHandler.jumpCost < stamHandler.currentStamina)
             {

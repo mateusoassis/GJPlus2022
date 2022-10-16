@@ -806,7 +806,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fc8278d78e9a0794fbb74a1629e1f460, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -849,11 +849,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1122269881}
   imageFillAmount: 1
-  maxStamina: 100
-  currentStamina: 100
-  staminaRegenPerSecond: 10
   dashCost: 30
   jumpCost: 10
+  currentStamina: 100
+  maxStamina: 100
+  staminaRegenPerSecond: 25
   degenPerSecond: 10
   degen: 0
 --- !u!1 &519420028

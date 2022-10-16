@@ -8,16 +8,16 @@ public class StaminaHandler : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private float imageFillAmount;
 
-    [SerializeField] private float maxStamina;
-    [Range(0,100)] public float currentStamina;
-    [SerializeField] private float staminaRegenPerSecond;
+    [Header("Costs")]
     public float dashCost;
     public float jumpCost;
+
+    [Header("Stamina")]
+    [Range(0,100)] public float currentStamina;
+    [SerializeField] private float maxStamina;
+    [SerializeField] private float staminaRegenPerSecond;
     [SerializeField] private float degenPerSecond;
-
     [SerializeField] private bool degen;
-
-    [SerializeField]
     
     void Start()
     {
