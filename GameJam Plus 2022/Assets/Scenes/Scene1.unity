@@ -11422,7 +11422,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3609cdc013dd05e4e94f9b5fd15cc5cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24999,12 +24999,12 @@ GameObject:
   - component: {fileID: 904429988}
   - component: {fileID: 904429989}
   m_Layer: 5
-  m_Name: Image
+  m_Name: MorteTransicao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &904429984
 RectTransform:
   m_ObjectHideFlags: 0
