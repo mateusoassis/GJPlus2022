@@ -6,6 +6,17 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     public bool gamePaused;
+    [SerializeField] private MenuMultipleOptions pauseMenuScript;
+
+    void Awake()
+    {
+        //pauseMenuScript.DisableThis();
+    }
+
+    void Start()
+    {
+        
+    }
 
     void Update()
     {
@@ -26,11 +37,13 @@ public class PauseManager : MonoBehaviour
     {
         Pause();
         gamePaused = true;
+        pauseMenuScript.EnableThis();
     }
     public void ResumeGame()
     {
         Resume();
         gamePaused = false;
+        pauseMenuScript.DisableThis();
     }
 
     private void Pause()

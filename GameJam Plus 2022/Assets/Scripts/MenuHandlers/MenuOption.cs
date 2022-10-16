@@ -7,13 +7,17 @@ using UnityEngine.EventSystems;
 
 public class MenuOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [Header("Reference")]
     public TextMeshProUGUI text;
+    [SerializeField] private MenuMultipleOptions main;
+    [Header("Ignore")]
     public float currentSize;
     public float nativeSize;
+    [Header("Fill the gaps")]
     [SerializeField] private float bigSize;
     public float lerpSize;
-    [SerializeField] private MenuMultipleOptions main;
     [SerializeField] private int menuNumber;
+    [Header("True the first option")]
     public bool mouseOver;
 
     void Awake()
