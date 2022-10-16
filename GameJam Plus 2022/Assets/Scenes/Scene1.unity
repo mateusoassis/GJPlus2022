@@ -7170,6 +7170,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 391439282}
   maxYDistance: 2
+  currentYDistance: 0
+  cameraMove: 0
+  targetY: 0
+  lerpCamera: 0
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11034,8 +11038,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07cf63c62a23f2a4b96452c972633f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  maxYDistance: 0
+  player: {fileID: 391439282}
+  maxYDistance: 2
+  currentYDistance: 0
+  cameraMove: 0
+  targetY: 0
+  lerpCamera: 3.5
 --- !u!81 &1826032411
 AudioListener:
   m_ObjectHideFlags: 0
