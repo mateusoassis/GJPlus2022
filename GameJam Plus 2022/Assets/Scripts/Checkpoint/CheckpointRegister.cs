@@ -18,4 +18,10 @@ public class CheckpointRegister : MonoBehaviour
             }
         }
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere((Vector2)transform.position, 0.5f); 
+    }
 }
