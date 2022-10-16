@@ -453,6 +453,7 @@ MonoBehaviour:
   - {fileID: 714778583}
   - {fileID: 215268516}
   disabled: 0
+  sound: {fileID: 1540068124}
 --- !u!1 &215268511
 GameObject:
   m_ObjectHideFlags: 0
@@ -6152,6 +6153,7 @@ MonoBehaviour:
   menuOption:
   - {fileID: 1886909453}
   disabled: 0
+  sound: {fileID: 1540068124}
 --- !u!1 &1122957871
 GameObject:
   m_ObjectHideFlags: 0
@@ -6939,6 +6941,18 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 1
+  - name: MoveOption
+    clip: {fileID: 8300000, guid: 2166da7f650243b43afeb8861364895a, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: SelectOption
+    clip: {fileID: 8300000, guid: 7510a29424071d94b857bf87945118b7, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
 --- !u!4 &1540068125
 Transform:
   m_ObjectHideFlags: 0
