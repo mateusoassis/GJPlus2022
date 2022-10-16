@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 0}
+  youLoseScript: {fileID: 0}
 --- !u!1 &101429178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1078,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3609cdc013dd05e4e94f9b5fd15cc5cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1264,7 +1265,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3775,11 +3776,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3936,7 +3937,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.5
+    frequency: 0.25
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
@@ -6291,6 +6292,7 @@ MonoBehaviour:
   colScript: {fileID: 391439286}
   stamHandler: {fileID: 391439287}
   anim: {fileID: 1911867383}
+  audio: {fileID: 0}
   jumpKey: 32
   wallGrabKey: 122
   dashKey: 120
@@ -6301,6 +6303,7 @@ MonoBehaviour:
   fallMultiplier: 5
   lowJumpMultiplier: 9
   fallGravity: 1
+  targetGravity: 0
   wallJumpDir: {x: 0, y: 0}
   slideSpeed: 5
   dashSpeed: 50
@@ -6661,6 +6664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  maxYDistance: 0
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10418,6 +10422,7 @@ MonoBehaviour:
   - {fileID: 2082368587}
   - {fileID: 173269826}
   disabled: 1
+  sound: {fileID: 0}
 --- !u!1 &1987448666
 GameObject:
   m_ObjectHideFlags: 0
