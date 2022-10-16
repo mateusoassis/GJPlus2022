@@ -49,9 +49,11 @@ public class PauseManager : MonoBehaviour
     private void Pause()
     {
         pauseMenu.SetActive(true);
+        Time.timeScale = 0;
     }
     private void Resume()
     {
         pauseMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 }
