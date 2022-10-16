@@ -6,6 +6,7 @@ public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] private GameObject optionsMenu;
     public bool optionsOpen;
+    [SerializeField] private PlayerInfo playerInfo;
 
     public void OpenOptions()
     {
@@ -19,5 +20,10 @@ public class OptionsMenu : MonoBehaviour
     {
         optionsMenu.SetActive(false);
         optionsOpen = false;
+    }
+
+    public void NewGame()
+    {
+        playerInfo.NewGame();
     }
 }

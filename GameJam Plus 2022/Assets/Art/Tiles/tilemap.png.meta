@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f2d9d428c2bc943498d55cfd1692fbb3
+guid: 64a681fa02cd8884fb357fd7cef91b2e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,7 +11,7 @@ TextureImporter:
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
-    mipMapsPreserveCoverage: 1
+    mipMapsPreserveCoverage: 0
     alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
@@ -113,101 +113,194 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: naia-idle-sheet_0
+      name: tilemap_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 16
-        width: 29
-        height: 35
+        x: 0
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 087dd7d4c21696b4481df5c2b34c8f41
-      internalID: 1771037155
+      spriteID: 91f2b2c77f21c764ea4123ef66aafbe9
+      internalID: 1861002674
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: naia-idle-sheet_1
+      name: tilemap_1
       rect:
         serializedVersion: 2
-        x: 81
-        y: 16
-        width: 29
-        height: 35
+        x: 16
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2618a5dc99ad5c74ab1c9c6d856b61aa
-      internalID: 1273311937
+      spriteID: cc17e72bbb448ab4aa2681c8c682de59
+      internalID: 1409315249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: naia-idle-sheet_2
+      name: tilemap_2
       rect:
         serializedVersion: 2
-        x: 145
-        y: 16
-        width: 29
-        height: 35
+        x: 32
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab77162dbf9f1c44a943b3cad45ea903
-      internalID: 1759334894
+      spriteID: 2570635c951b04a45bbc6dfce4732a08
+      internalID: -692947148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: naia-idle-sheet_3
+      name: tilemap_3
       rect:
         serializedVersion: 2
-        x: 209
+        x: 0
         y: 16
-        width: 29
-        height: 35
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1e0e874413799d48868a85e8c22994c
-      internalID: 1388446342
+      spriteID: 268d95669b76dee4aa03243b669628af
+      internalID: 905044751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acaa837daaad78741b8e9376b488ef44
+      internalID: 1662955502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 441f58b922585dd49a4204f06f4b0940
+      internalID: -386042883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eeca94fbe8e92e489e004e0e9517cf5
+      internalID: -1632739471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ec9574a78f27646b926f59f90df645
+      internalID: 181188759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fda82ce44e9824341ac3b4cdc24e8a2f
+      internalID: -1531824690
       vertices: []
       indices: 
       edges: []
@@ -223,10 +316,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      naia-idle-sheet_0: 1771037155
-      naia-idle-sheet_1: 1273311937
-      naia-idle-sheet_2: 1759334894
-      naia-idle-sheet_3: 1388446342
+      tilemap_7: 181188759
+      tilemap_8: -1531824690
+      tilemap_5: -386042883
+      tilemap_2: -692947148
+      tilemap_3: 905044751
+      tilemap_0: 1861002674
+      tilemap_6: -1632739471
+      tilemap_4: 1662955502
+      tilemap_1: 1409315249
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
