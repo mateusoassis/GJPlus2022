@@ -606,11 +606,7 @@ MonoBehaviour:
   nativeSize: 0
   bigSize: 75
   lerpSize: 5
-<<<<<<< HEAD
   menuNumber: 3
-=======
-  menuNumber: 2
->>>>>>> origin/main
   mouseOver: 0
 --- !u!1 &314102592
 GameObject:
@@ -5582,13 +5578,8 @@ MonoBehaviour:
   nativeSize: 0
   bigSize: 75
   lerpSize: 5
-<<<<<<< HEAD
   menuNumber: 1
   mouseOver: 0
-=======
-  menuNumber: 0
-  mouseOver: 1
->>>>>>> origin/main
 --- !u!1 &714778578
 GameObject:
   m_ObjectHideFlags: 0
@@ -5766,11 +5757,7 @@ MonoBehaviour:
   nativeSize: 0
   bigSize: 75
   lerpSize: 5
-<<<<<<< HEAD
   menuNumber: 2
-=======
-  menuNumber: 1
->>>>>>> origin/main
   mouseOver: 0
 --- !u!1 &782258902
 GameObject:
@@ -6250,9 +6237,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!1 &1435761536
-=======
 --- !u!114 &1122957875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6287,7 +6271,6 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
 --- !u!1 &1367233162
->>>>>>> origin/main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6295,7 +6278,6 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
   - component: {fileID: 1435761537}
   - component: {fileID: 1435761541}
   - component: {fileID: 1435761540}
@@ -6303,29 +6285,22 @@ GameObject:
   - component: {fileID: 1435761538}
   m_Layer: 5
   m_Name: NewGameButton
-=======
   - component: {fileID: 1367233163}
   - component: {fileID: 1367233165}
   - component: {fileID: 1367233164}
   m_Layer: 5
   m_Name: MenuNaia
->>>>>>> origin/main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!224 &1435761537
-=======
---- !u!224 &1367233163
->>>>>>> origin/main
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1435761536}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -6342,29 +6317,11 @@ RectTransform:
   m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1435761538
-=======
-  m_GameObject: {fileID: 1367233162}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1531823572}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1367233164
->>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1435761536}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -6434,33 +6391,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435761536}
-=======
-  m_GameObject: {fileID: 1367233162}
->>>>>>> origin/main
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-<<<<<<< HEAD
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-=======
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
->>>>>>> origin/main
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< HEAD
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
-=======
-  m_Sprite: {fileID: 21300000, guid: 1c0f6aebf52fae8458488d1f31dd792a, type: 3}
-  m_Type: 0
->>>>>>> origin/main
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6469,7 +6414,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-<<<<<<< HEAD
 --- !u!114 &1435761540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6491,19 +6435,12 @@ MonoBehaviour:
   menuNumber: 0
   mouseOver: 1
 --- !u!222 &1435761541
-=======
---- !u!222 &1367233165
->>>>>>> origin/main
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1435761536}
-=======
-  m_GameObject: {fileID: 1367233162}
->>>>>>> origin/main
   m_CullTransparentMesh: 1
 --- !u!1 &1451816861
 GameObject:
