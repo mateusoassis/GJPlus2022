@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class AuxiliarAnimScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private AudioClipManager audio;
+    
+    public void StepSound()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int u = Random.Range(1, 4);
+        audio.PlayOneShot("Step"+u);
     }
 }

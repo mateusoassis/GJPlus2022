@@ -1508,6 +1508,7 @@ MonoBehaviour:
   colScript: {fileID: 391439286}
   stamHandler: {fileID: 391439287}
   anim: {fileID: 1911867383}
+  audio: {fileID: 435940812}
   jumpKey: 32
   wallGrabKey: 122
   dashKey: 120
@@ -1660,6 +1661,54 @@ MonoBehaviour:
     volume: 0.6
     pitch: 1
     loop: 1
+  - name: LandSFX
+    clip: {fileID: 8300000, guid: 303b6ecc4600fc0459b646243539350c, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+  - name: Jump1
+    clip: {fileID: 8300000, guid: 01870931c21a5fd48972b6db772495b5, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: Jump2
+    clip: {fileID: 8300000, guid: 0b8cf2805d0ba974cbb1414e38ffb957, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: Jump3
+    clip: {fileID: 8300000, guid: eb86f8a6e7df1374d8db62b7da99e133, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: Jump4
+    clip: {fileID: 8300000, guid: 7364614b535f415489864fd8c14a948c, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: Step1
+    clip: {fileID: 8300000, guid: 2e07af7b827802b4b8a36702728f760e, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: Step2
+    clip: {fileID: 8300000, guid: 117e4825956be3746bc84d1705644c7c, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+  - name: Step3
+    clip: {fileID: 8300000, guid: b3416c04b7b30f542a8127185b4213b4, type: 3}
+    source: {fileID: 0}
+    volume: 0.6
+    pitch: 1
+    loop: 0
 --- !u!4 &435940813
 Transform:
   m_ObjectHideFlags: 0
@@ -5155,6 +5204,7 @@ GameObject:
   - component: {fileID: 1911867382}
   - component: {fileID: 1911867384}
   - component: {fileID: 1911867383}
+  - component: {fileID: 1911867385}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -5249,6 +5299,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1911867385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911867381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46340aaae9a5234abb501863c329ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 435940812}
 --- !u!1 &1967935146
 GameObject:
   m_ObjectHideFlags: 0

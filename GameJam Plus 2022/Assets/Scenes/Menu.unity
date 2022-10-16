@@ -427,7 +427,7 @@ RectTransform:
   - {fileID: 714778579}
   - {fileID: 215268512}
   m_Father: {fileID: 1531823572}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -5790,7 +5790,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1531823572}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5819,15 +5819,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: A Truta das Estrelas
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d78b25b589a176949b3aea4d207319ab, type: 2}
-  m_sharedMaterial: {fileID: -4396738099387460403, guid: d78b25b589a176949b3aea4d207319ab, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4a336c8104844464dbf2d4fb100b3b0c, type: 2}
+  m_sharedMaterial: {fileID: 1727072222268424007, guid: 4a336c8104844464dbf2d4fb100b3b0c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6129,7 +6129,7 @@ RectTransform:
   - {fileID: 2004991217}
   - {fileID: 1886909449}
   m_Father: {fileID: 1531823572}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6285,11 +6285,6 @@ GameObject:
   - component: {fileID: 1435761538}
   m_Layer: 5
   m_Name: NewGameButton
-  - component: {fileID: 1367233163}
-  - component: {fileID: 1367233165}
-  - component: {fileID: 1367233164}
-  m_Layer: 5
-  m_Name: MenuNaia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6301,7 +6296,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435761536}
+  m_GameObject: {fileID: 1367233162}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -6322,7 +6317,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435761536}
+  m_GameObject: {fileID: 1367233162}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -6390,7 +6385,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435761536}
+  m_GameObject: {fileID: 1367233162}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -6420,7 +6415,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435761536}
+  m_GameObject: {fileID: 1367233162}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c08d675f3211f6d4ab576489c7a95f98, type: 3}
@@ -6440,7 +6435,7 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435761536}
+  m_GameObject: {fileID: 1367233162}
   m_CullTransparentMesh: 1
 --- !u!1 &1451816861
 GameObject:
@@ -6883,7 +6878,6 @@ RectTransform:
   - {fileID: 1675550069}
   - {fileID: 1479706577}
   - {fileID: 314102593}
-  - {fileID: 1367233163}
   - {fileID: 782258903}
   - {fileID: 117870427}
   - {fileID: 1036686330}

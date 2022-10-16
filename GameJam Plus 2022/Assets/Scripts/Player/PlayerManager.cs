@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private CollisionChecking colScript;
     [SerializeField] private StaminaHandler stamHandler;
     [SerializeField] private Animator anim;
+    [SerializeField] private AudioClipManager audio;
 
     [Header("Keybinds")]
     [SerializeField] private KeyCode jumpKey;
@@ -174,6 +175,10 @@ public class PlayerManager : MonoBehaviour
         if(colScript.onGround && !groundTouch)
         {
             GroundTouch();
+            if(!groundTouch)
+            {
+                audio.PlayOneShot("LandSFX");
+            }
             groundTouch = true;
         }
         if(!colScript.onGround && groundTouch)
@@ -373,6 +378,11 @@ public class PlayerManager : MonoBehaviour
         anim.SetBool("wallgrab", false);
         anim.SetBool("jumping", true);
         anim.SetBool("dashing", false);
+        if(groundTouch)
+        {
+            int u = Random.Range(1, 4);
+            audio.PlayOneShot("Jump"+u);
+        }
     }
 
     void RigidbodyDrag(float x)
