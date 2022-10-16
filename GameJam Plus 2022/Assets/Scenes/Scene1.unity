@@ -23990,7 +23990,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
-<<<<<<< HEAD
 --- !u!1 &904429983
 GameObject:
   m_ObjectHideFlags: 0
@@ -24150,7 +24149,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
-=======
 --- !u!4 &900352824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3921056111836985025, guid: cf6e7bc8df8c38b4db12c8bbe8605937, type: 3}
@@ -25436,7 +25434,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3921056111836985025, guid: cf6e7bc8df8c38b4db12c8bbe8605937, type: 3}
   m_PrefabInstance: {fileID: 1109355355}
   m_PrefabAsset: {fileID: 0}
->>>>>>> origin/main
 --- !u!1 &985643713
 GameObject:
   m_ObjectHideFlags: 0
@@ -27998,11 +27995,8 @@ RectTransform:
   - {fileID: 605733695}
   - {fileID: 1993500108}
   - {fileID: 23832341}
-<<<<<<< HEAD
   - {fileID: 904429984}
-=======
   - {fileID: 2001928579}
->>>>>>> origin/main
   m_Father: {fileID: 1826032413}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
