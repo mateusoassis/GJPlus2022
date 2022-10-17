@@ -13,17 +13,17 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        currentYDistance = transform.position.y - player.transform.position.y;
+        currentYDistance = Mathf.Abs(transform.position.y - player.transform.position.y);
 
         if(cameraMove)
         {
             LerpCameraY();
-            if(currentYDistance < maxYDistance)
+            if(currentYDistance > maxYDistance)
             {
                 cameraMove = false;
             }
         }
-        else if(currentYDistance < maxYDistance && !cameraMove)
+        else if((currentYDistance < maxYDistance || currentYDistance > maxYDistance) && !cameraMove)
         {
             cameraMove = true;
             targetY = player.transform.position.y;
