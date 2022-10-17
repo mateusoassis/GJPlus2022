@@ -8,6 +8,7 @@ public class TutorialDialogue : MonoBehaviour
 {
     [Header("Referências")]
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private Image image;
 
     [Header("Botão para skipar")]
     public KeyCode skipButton1;

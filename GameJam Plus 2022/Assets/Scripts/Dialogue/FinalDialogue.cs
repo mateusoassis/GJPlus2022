@@ -8,6 +8,7 @@ public class FinalDialogue : MonoBehaviour
 {
     [Header("Referências")]
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private Image image;
 
     [Header("Botão para skipar")]
     public KeyCode skipButton1;
@@ -15,7 +16,7 @@ public class FinalDialogue : MonoBehaviour
 
     [Header("Portrait and Order")]
     public Sprite[] sprites;
-    public int[] dialogueSprite;
+    public int[] dialogueSpriteOrder; // image.sprite = sprites[dialogueSpriteOrder[index]];
 
     [Header("Texto")]
     public string[] dialogueString;
@@ -77,6 +78,7 @@ public class FinalDialogue : MonoBehaviour
         dialogueText.text = string.Empty;
         started = true;
         index = 0;
+        UpdateImageSprite();
         StartCoroutine(TypeDialogue());
     }
 
@@ -89,11 +91,17 @@ public class FinalDialogue : MonoBehaviour
         }
     }
 
+    public void UpdateImageSprite()
+    {
+        image.sprite = sprites[dialogueSpriteOrder[index]];
+    }
+
     public void NextDialogue()
     {
         if(index < dialogueString.Length - 1)
         {
             index++;
+            UpdateImageSprite();
             dialogueText.text = string.Empty;
             StartCoroutine(TypeDialogue());
         }
