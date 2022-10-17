@@ -50,7 +50,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float slideSpeed;
 
     [Header("Dash")]
+    [SerializeField] private float dashTime;
     [SerializeField] private float dashSpeed;
+    [SerializeField] private float distanceBetweenImages;
+    [SerializeField] private float dashCooldown;
+    [SerializeField] private float dashTimeLeft;
+    [SerializeField] private float lastImageXpos;
+    [SerializeField] private float lastDash;
+    
 
     [Header("LocalScale")]
     [SerializeField] private Vector3 localScaleSaved;
@@ -99,31 +106,35 @@ public class PlayerManager : MonoBehaviour
             jumpCount = 0;
         }
 
-        if(colScript.onWall && (Input.GetKeyUp(wallGrabKey1) || Input.GetKeyUp(wallGrabKey2)) && canMove)
+        if(colScript.onWall && (Input.GetKeyDown(wallGrabKey1) || Input.GetKeyDown(wallGrabKey2)) && canMove)
         {
-            if(stamHandler.currentStamina > 0)
+            if(!pauseManagerScript.gamePaused)
             {
-                if(!wallGrabbed)
+                if(stamHandler.currentStamina > 0)
                 {
-                    audio.PlayOneShot("WallGrab");
+                    if(!wallGrabbed)
+                    {
+                        audio.PlayOneShot("WallGrab");
+                    }
+                    wallGrabbed = true;
+                    
+                    anim.SetBool("idle", false);
+                    anim.SetBool("walking", false);
+                    anim.SetBool("wallgrab", true);
+                    anim.SetBool("jumping", false);
+                    anim.SetBool("dashing", false);
+                    
+                    //audio.PlayOneShot("WallGrab");
+                    wallSlide = false;
+                    jumping = false;
+                    stamHandler.StartDegen();
                 }
-                wallGrabbed = true;
-                
-                anim.SetBool("idle", false);
-                anim.SetBool("walking", false);
-                anim.SetBool("wallgrab", true);
-                anim.SetBool("jumping", false);
-                anim.SetBool("dashing", false);
-                
-                //audio.PlayOneShot("WallGrab");
-                wallSlide = false;
-                jumping = false;
-                stamHandler.StartDegen();
+                else
+                {
+                    wallGrabbed = false;
+                }
             }
-            else
-            {
-                wallGrabbed = false;
-            }
+            
         }
 
         if(colScript.onGround && !isDashing)
@@ -159,51 +170,57 @@ public class PlayerManager : MonoBehaviour
 
         if(Input.GetKeyDown(jumpKey1) || Input.GetKeyDown(jumpKey2))
         {
-            if(jumpCount < maxJump)
+            if(!pauseManagerScript.gamePaused)
             {
-                if(colScript.onGround)
+                if(jumpCount < maxJump)
                 {
-                    jumpCount++;
-                    Jump(Vector2.up, false);
-                    jumping = true;
-                    wallGrabbed = false;
-                    wallSlide = false;
-                    stamHandler.StopDegen();
+                    if(colScript.onGround)
+                    {
+                        jumpCount++;
+                        Jump(Vector2.up, false);
+                        jumping = true;
+                        wallGrabbed = false;
+                        wallSlide = false;
+                        stamHandler.StopDegen();
+                    }
+                    else if(colScript.onWall && !colScript.onGround && wallGrabbed)
+                    {
+                        WallJump();
+                        jumpCount++;
+                        jumping = true;
+                    }
                 }
-                else if(colScript.onWall && !colScript.onGround && wallGrabbed)
-                {
-                    WallJump();
-                    jumpCount++;
-                    jumping = true;
-                }
-            }
-            
+            }   
         }
 
         if((Input.GetKeyDown(dashKey1) || Input.GetKeyDown(dashKey2)) && !hasDashed && (colScript.onGround || colScript.onWall))
         {
-            if(stamHandler.dashCost < stamHandler.currentStamina)
+            if(!pauseManagerScript.gamePaused)
             {
-                if(xRawInput != 0 || yRawInput != 0)
+                if(stamHandler.dashCost < stamHandler.currentStamina)
                 {
-                    Dash(xRawInput, 0, true);
-                    stamHandler.CastDash();
-                }
-                else
-                {
-                    if(facingRight)
+                    if(xRawInput != 0 || yRawInput != 0)
                     {
-                        Dash(1,0, true);
+                        Dash(xRawInput, 0, true);
                         stamHandler.CastDash();
                     }
                     else
                     {
-                        Dash(-1,0, true);
-                        stamHandler.CastDash();
-                    }
-                } 
-            } 
+                        if(facingRight)
+                        {
+                            Dash(1,0, true);
+                            stamHandler.CastDash();
+                        }
+                        else
+                        {
+                            Dash(-1,0, true);
+                            stamHandler.CastDash();
+                        }
+                    } 
+                }
+            }
         }
+        CheckDash();
 
         if(colScript.onGround && !groundTouch)
         {
@@ -243,6 +260,7 @@ public class PlayerManager : MonoBehaviour
             anim.SetBool("dashing", true);
             audio.PlayOneShot("DashSound");
         }
+        /*
         else
         {
             Debug.Log("jump da parede");
@@ -253,6 +271,7 @@ public class PlayerManager : MonoBehaviour
             anim.SetBool("dashing", false);
             wallGrabbed = false;
         }
+        */
         
 
         rb.velocity = Vector2.zero;
@@ -267,17 +286,38 @@ public class PlayerManager : MonoBehaviour
         StartCoroutine(GroundDash());
         DOVirtual.Float(14, 0, 0.8f, RigidbodyDrag);
 
+        // Afterimage
+        AfterimagePool.Instance.GetFromPool();
+        lastImageXpos = transform.position.x;
+        dashTimeLeft = dashTime;
+        lastDash = Time.time;
+
         rb.gravityScale = 0;
         fallGravity = false;
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(dashTime);
 
         rb.gravityScale = targetGravity;
         fallGravity = true;
         wallJumped = false;
         isDashing = false;
+    }
+    private void CheckDash()
+    {
+        if(isDashing)
+        {
+            if(dashTimeLeft > 0)
+            {
+                dashTimeLeft -= Time.deltaTime;
+                if(Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
+                {
+                    AfterimagePool.Instance.GetFromPool();
+                    lastImageXpos = transform.position.x;
+                }
+            }
+        }
     }
 
     private IEnumerator GroundDash()
@@ -333,7 +373,7 @@ public class PlayerManager : MonoBehaviour
 
                 Jump((Vector2.up / 1.5f/* + wallDir / 1.5f*/), true);
 
-                anim.SetBool("jumping", true);
+                //anim.SetBool("jumping", true);
                 
                 wallJumped = false;
                 stamHandler.CastJump();
@@ -411,12 +451,14 @@ public class PlayerManager : MonoBehaviour
     private void Jump(Vector2 jumpDirection, bool onWall)
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += Vector2.up * jumpForce;   
+        rb.velocity += Vector2.up * jumpForce;  
+        /* 
         anim.SetBool("idle", false);
         anim.SetBool("walking", false);
         anim.SetBool("wallgrab", false);
         anim.SetBool("jumping", true);
         anim.SetBool("dashing", false);
+        */
         if(groundTouch)
         {
             int u = Random.Range(1, 4);
