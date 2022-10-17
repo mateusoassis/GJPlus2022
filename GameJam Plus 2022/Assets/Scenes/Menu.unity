@@ -454,6 +454,10 @@ MonoBehaviour:
   - {fileID: 215268516}
   disabled: 0
   sound: {fileID: 1540068124}
+  downKey1: 274
+  downKey2: 115
+  upKey1: 273
+  upKey2: 119
 --- !u!1 &215268511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1390,10 @@ MonoBehaviour:
   - {fileID: 1886909453}
   disabled: 0
   sound: {fileID: 1540068124}
+  downKey1: 0
+  downKey2: 0
+  upKey1: 0
+  upKey2: 0
 --- !u!1 &1122957871
 GameObject:
   m_ObjectHideFlags: 0

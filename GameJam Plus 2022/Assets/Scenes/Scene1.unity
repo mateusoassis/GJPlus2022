@@ -9224,11 +9224,14 @@ MonoBehaviour:
   stamHandler: {fileID: 391439287}
   anim: {fileID: 1911867383}
   audio: {fileID: 435940812}
-  testing: 0
-  playerInfo: {fileID: 0}
-  jumpKey: 32
-  wallGrabKey: 106
-  dashKey: 107
+  testing: 1
+  playerInfo: {fileID: 11400000, guid: 36c5ec7664ee29747a6275072cbfb184, type: 2}
+  jumpKey1: 32
+  jumpKey2: 0
+  wallGrabKey1: 106
+  wallGrabKey2: 122
+  dashKey1: 107
+  dashKey2: 120
   walkDirection: {x: 0, y: 0}
   rb: {fileID: 391439285}
   walkSpeed: 10
@@ -18548,6 +18551,10 @@ MonoBehaviour:
   - {fileID: 2020856952}
   disabled: 1
   sound: {fileID: 0}
+  downKey1: 0
+  downKey2: 0
+  upKey1: 0
+  upKey2: 0
 --- !u!224 &605733695
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21206,6 +21213,10 @@ MonoBehaviour:
   - {fileID: 1117770388}
   disabled: 1
   sound: {fileID: 0}
+  downKey1: 0
+  downKey2: 0
+  upKey1: 0
+  upKey2: 0
 --- !u!1001 &747278138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47711,6 +47722,10 @@ MonoBehaviour:
   - {fileID: 173269826}
   disabled: 1
   sound: {fileID: 435940812}
+  downKey1: 0
+  downKey2: 0
+  upKey1: 0
+  upKey2: 0
 --- !u!4 &1968716020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2338474111103340943, guid: 94dd996c400b85f4f9303b7721bebdf6, type: 3}

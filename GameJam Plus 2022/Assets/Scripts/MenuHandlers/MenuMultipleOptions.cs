@@ -11,11 +11,17 @@ public class MenuMultipleOptions : MonoBehaviour
     [SerializeField] private bool disabled;
     [SerializeField] private AudioClipManager sound;
 
+    [Header("Keybinds")]
+    [SerializeField] private KeyCode downKey1;
+    [SerializeField] private KeyCode downKey2;
+    [SerializeField] private KeyCode upKey1;
+    [SerializeField] private KeyCode upKey2;
+
     void Update()
     {
         if(!disabled)
         {
-            if(Input.GetKeyDown(KeyCode.DownArrow))
+            if(Input.GetKeyDown(downKey1) || Input.GetKeyDown(downKey2))
             {
                 selectedButton++;
                 sound.PlayOneShot("MoveOption");
@@ -25,7 +31,7 @@ public class MenuMultipleOptions : MonoBehaviour
                     selectedButton = 0;
                 }
             }
-            else if(Input.GetKeyDown(KeyCode.UpArrow))
+            else if(Input.GetKeyDown(upKey1) || Input.GetKeyDown(upKey2))
             {
                 selectedButton--;
                 sound.PlayOneShot("MoveOption");
