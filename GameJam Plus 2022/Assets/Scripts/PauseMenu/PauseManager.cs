@@ -7,7 +7,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     public bool gamePaused;
     [SerializeField] private MenuMultipleOptions pauseMenuScript;
-    [SerializeField] private YouLose youLoseScript;
+    [SerializeField] private CollisionChecking colChecking;
 
     void Awake()
     {
@@ -23,7 +23,7 @@ public class PauseManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!youLoseScript.playerCollision)
+            if(!colChecking.playerLose)
             {
                 if(!gamePaused)
                 {

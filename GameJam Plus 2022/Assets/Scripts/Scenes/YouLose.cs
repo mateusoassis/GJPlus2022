@@ -4,36 +4,44 @@ using UnityEngine;
 
 public class YouLose : MonoBehaviour
 {
-    public bool playerCollision;
-    [SerializeField] private GameObject youLoseTransition;
-    [SerializeField] private AudioClipManager sfx;
+    //public bool playerCollision;
+    private CollisionChecking colCheck;
+    
+    //[SerializeField] private AudioClipManager sfx;
 
     void Awake()
     {
-        playerCollision = false;
+        //playerCollision = false;
+        colCheck = GameObject.FindWithTag("Player").GetComponent<CollisionChecking>();
+        //youLoseTransition = GameObject.Find("MorteTransicao");
+        //sfx = GameObject.FindWithTag("Sound").GetComponent<AudioClipManager>();
     }
 
     void Start()
     {
-        youLoseTransition = GameObject.Find("MorteTransicao");
-        sfx = GameObject.FindWithTag("Sound").GetComponent<AudioClipManager>();
+        //youLoseTransition.SetActive(false);        
     }
 
     void Update()
     {
+        /*
         if(playerCollision == true)
         {
             youLoseTransition.SetActive(true);
         }
+        */
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Player")
         {
-            playerCollision = true;
+            colCheck.playerLose = true;
+           // playerCollision = true;
+            /*
             sfx.PlayOneShot("DeathSound");
             sfx.PlayOneShot("LoseSound");
+            */
         }
     }
 }

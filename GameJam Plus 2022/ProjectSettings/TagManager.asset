@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerSprite
   - Sound
+  - Spikes
   layers:
   - Default
   - TransparentFX

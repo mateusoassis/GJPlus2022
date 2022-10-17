@@ -13,10 +13,22 @@ public class CollisionChecking : MonoBehaviour
     [SerializeField] private float collisionRadius;
     [SerializeField] private LayerMask normalGroundLayer;
     [SerializeField] private LayerMask grabbableGroundLayer;
+
+    [Header("Lose Transition")]
+    [SerializeField] private GameObject youLoseTransition;
+    public bool playerLose;
+    [SerializeField] private bool restartGame;
+    [SerializeField] private AudioClipManager sfx;
     
+    void Awake()
+    {
+        youLoseTransition.SetActive(false);
+    }
+
     void Start()
     {
-        
+        playerLose = false;
+        restartGame = false;
     }
 
     // Update is called once per frame
@@ -32,6 +44,17 @@ public class CollisionChecking : MonoBehaviour
         else
         {
             onWall = false;
+        }
+
+        if(playerLose && !restartGame)
+        {
+            restartGame = true;
+            sfx.PlayOneShot("DeathSound");
+            sfx.PlayOneShot("LoseSound");
+        }
+        if(restartGame)
+        {
+            youLoseTransition.SetActive(true);
         }
     }
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3809528087421817088}
   m_Layer: 0
   m_Name: Spikes-export (3)
-  m_TagString: Untagged
+  m_TagString: Spikes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
