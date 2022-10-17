@@ -48,7 +48,7 @@ public class DialogueBox : MonoBehaviour
 
     void Update()
     {
-        if((Input.GetKeyDown(skipButton1) || Input.GetKeyDown(skipButton2) && canSkip))
+        if(((Input.GetKeyDown(skipButton1) || Input.GetKeyDown(skipButton2)) && canSkip))
         {
             if(dialogueText.text == dialogueString[index])
             {

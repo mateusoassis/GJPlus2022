@@ -16,9 +16,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PlayerInfo playerInfo;
 
     [Header("Keybinds")]
-    [SerializeField] private KeyCode jumpKey;
-    [SerializeField] private KeyCode wallGrabKey;
-    [SerializeField] private KeyCode dashKey;
+    [SerializeField] private KeyCode jumpKey1;
+    [SerializeField] private KeyCode jumpKey2;
+    [SerializeField] private KeyCode wallGrabKey1;
+    [SerializeField] private KeyCode wallGrabKey2;
+    [SerializeField] private KeyCode dashKey1;
+    [SerializeField] private KeyCode dashKey2;
 
     [Header("Inputs")]
     private float xInput;
@@ -87,7 +90,7 @@ public class PlayerManager : MonoBehaviour
         
         Walk(walkDirection);
 
-        if((Input.GetKeyUp(wallGrabKey) || !colScript.onWall || !canMove) || jumping)
+        if(((Input.GetKeyUp(wallGrabKey1) || Input.GetKeyUp(wallGrabKey2)) || !colScript.onWall || !canMove) || jumping)
         {
             anim.SetBool("wallgrab", false);
             wallGrabbed = false;
@@ -96,7 +99,7 @@ public class PlayerManager : MonoBehaviour
             jumpCount = 0;
         }
 
-        if(colScript.onWall && Input.GetKey(wallGrabKey) && canMove)
+        if(colScript.onWall && (Input.GetKeyUp(wallGrabKey1) || Input.GetKeyUp(wallGrabKey2)) && canMove)
         {
             if(stamHandler.currentStamina > 0)
             {
@@ -154,7 +157,7 @@ public class PlayerManager : MonoBehaviour
         }
         
 
-        if(Input.GetKeyDown(jumpKey))
+        if(Input.GetKeyDown(jumpKey1) || Input.GetKeyDown(jumpKey2))
         {
             if(jumpCount < maxJump)
             {
@@ -177,7 +180,7 @@ public class PlayerManager : MonoBehaviour
             
         }
 
-        if(Input.GetKeyDown(dashKey) && !hasDashed && (colScript.onGround || colScript.onWall))
+        if((Input.GetKeyDown(dashKey1) || Input.GetKeyDown(dashKey2)) && !hasDashed && (colScript.onGround || colScript.onWall))
         {
             if(stamHandler.dashCost < stamHandler.currentStamina)
             {
@@ -323,8 +326,8 @@ public class PlayerManager : MonoBehaviour
                 anim.SetBool("jumping", true);
                 anim.SetBool("dashing", false);
                 */
-                StopCoroutine(DisableMovement(0));
-                StartCoroutine(DisableMovement(.1f));
+                //StopCoroutine(DisableMovement(0));
+                //StartCoroutine(DisableMovement(.1f));
 
                 //Vector2 wallDir = colScript.onRightWall ? Vector2.left : Vector2.right;
 

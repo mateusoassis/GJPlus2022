@@ -291,8 +291,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -754,7 +754,7 @@ MonoBehaviour:
   - Climb the Giant Tree and ask the Moon to become a star. Nothing will ever stop
     her.
   typeInterval: 0.1
-  skipDuration: 5
+  skipDuration: 1
   disableAfterEnd: 0
   ended: 0
 --- !u!114 &1981625457
