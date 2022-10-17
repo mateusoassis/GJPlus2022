@@ -11,6 +11,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private AudioClipManager audio;
 
+    [Header("Test Mode")]
+    [SerializeField] private bool testing;
+    [SerializeField] private PlayerInfo playerInfo;
+
     [Header("Keybinds")]
     [SerializeField] private KeyCode jumpKey;
     [SerializeField] private KeyCode wallGrabKey;
@@ -58,6 +62,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private bool hasDashed;
     [SerializeField] private bool jumping;
     [SerializeField] private bool facingRight;
+
+    void Awake()
+    {
+        if(testing)
+        {
+            playerInfo.checkpointReached = 0;
+        }
+    }
 
     void Start()
     {
