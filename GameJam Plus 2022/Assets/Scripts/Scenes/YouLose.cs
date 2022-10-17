@@ -5,17 +5,29 @@ using UnityEngine;
 public class YouLose : MonoBehaviour
 {
     public bool playerCollision;
+    [SerializeField] private GameObject youLoseTransition;
+    [SerializeField] private AudioClipManager sfx;
 
     void Awake()
     {
         playerCollision = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void Update()
+    {
+        if(playerCollision == true)
+        {
+            youLoseTransition.SetActive(true);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Player")
         {
             playerCollision = true;
+            sfx.PlayOneShot("DeathSound");
+            sfx.PlayOneShot("LoseSound");
         }
     }
 }

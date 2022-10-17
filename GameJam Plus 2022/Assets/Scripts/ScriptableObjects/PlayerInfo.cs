@@ -7,9 +7,20 @@ using UnityEngine.UI;
 public class PlayerInfo : ScriptableObject
 {
     public int checkpointReached;
+    public bool loadSound;
+    public bool noIntroduction;
 
     public void NewGame()
     {
         checkpointReached = 0;
+        loadSound = true;
+    }
+    public void ContinueGame()
+    {
+        loadSound = true;
+    }
+    public void DisableIntroductionAfterThis()
+    {
+        noIntroduction = true;
     }
 }

@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSounds : MonoBehaviour
 {
     [SerializeField] private AudioClipManager audio;
-    // Start is called before the first frame update
+    [SerializeField] private Scene currentScene;
+    [SerializeField] private string[] scenesToDeleteSource;
+    [SerializeField] private PlayerInfo playerInfo;
+
     void Start()
     {
+        
         audio.Play("StageSound");
+        playerInfo.loadSound = false;
+        
     }
 }
