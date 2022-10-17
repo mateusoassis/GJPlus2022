@@ -13,6 +13,12 @@ public class YouLose : MonoBehaviour
         playerCollision = false;
     }
 
+    void Start()
+    {
+        youLoseTransition = GameObject.Find("MorteTransicao");
+        sfx = GameObject.FindWithTag("Sound").GetComponent<AudioClipManager>();
+    }
+
     void Update()
     {
         if(playerCollision == true)
