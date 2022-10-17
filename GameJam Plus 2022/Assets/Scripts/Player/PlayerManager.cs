@@ -23,6 +23,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private KeyCode dashKey1;
     [SerializeField] private KeyCode dashKey2;
 
+    [Header("Wall Grab Buffer")]
+    [SerializeField] private float grabBufferDuration;
+    [SerializeField] private float grabBufferTimer;
+    [SerializeField] private bool pressedWallGrab;
+
     [Header("Inputs")]
     private float xInput;
     private float xRawInput;
@@ -85,6 +90,7 @@ public class PlayerManager : MonoBehaviour
     {
         localScaleSaved = anim.gameObject.transform.localScale;
         jumpCount = 0;
+        grabBufferTimer = grabBufferDuration;
     }
 
     void Update()
@@ -106,10 +112,19 @@ public class PlayerManager : MonoBehaviour
             jumpCount = 0;
         }
 
-        if(colScript.onWall && (Input.GetKeyDown(wallGrabKey1) || Input.GetKeyDown(wallGrabKey2)) && canMove)
+        CheckWallGrabBuffer();
+
+        if(/*colScript.onWall && */(Input.GetKeyDown(wallGrabKey1) || Input.GetKeyDown(wallGrabKey2)) && canMove)
         {
             if(!pauseManagerScript.gamePaused)
             {
+                Debug.Log("apertou wallgrab");
+                if(!pressedWallGrab)
+                {
+                    Debug.Log("pressedwallgrab = true");
+                    pressedWallGrab = true;
+                }
+                /*
                 if(stamHandler.currentStamina > 0)
                 {
                     if(!wallGrabbed)
@@ -133,6 +148,7 @@ public class PlayerManager : MonoBehaviour
                 {
                     wallGrabbed = false;
                 }
+                */
             }
             
         }
@@ -318,6 +334,56 @@ public class PlayerManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void CheckWallGrabBuffer()
+    {
+        if(pressedWallGrab)
+        {
+            if(grabBufferTimer > 0)
+            {
+                grabBufferTimer -= Time.deltaTime;
+                //wallGrabbed = true;
+            }
+            else
+            {
+                DeactivatePressedWallGrabBool();
+            }
+
+            
+            if(stamHandler.currentStamina > 0 && !wallGrabbed && colScript.onWall)
+            {
+                //if(!wallGrabbed)
+                //{
+                    audio.PlayOneShot("WallGrab");
+                //}
+                wallGrabbed = true;
+                DeactivatePressedWallGrabBool();
+                
+                anim.SetBool("idle", false);
+                anim.SetBool("walking", false);
+                anim.SetBool("wallgrab", true);
+                anim.SetBool("jumping", false);
+                anim.SetBool("dashing", false);
+                
+                //audio.PlayOneShot("WallGrab");
+                wallSlide = false;
+                jumping = false;
+                stamHandler.StartDegen();
+            }
+            else
+            {
+                wallGrabbed = false;
+                anim.SetBool("wallgrab", false);
+                //DeactivatePressedWallGrabBool();
+            }
+        }
+        
+    }
+    private void DeactivatePressedWallGrabBool()
+    {
+        pressedWallGrab = false;
+        grabBufferTimer = grabBufferDuration;
     }
 
     private IEnumerator GroundDash()

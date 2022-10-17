@@ -10450,6 +10450,9 @@ MonoBehaviour:
   wallGrabKey2: 122
   dashKey1: 107
   dashKey2: 120
+  grabBufferDuration: 0.5
+  grabBufferTimer: 0
+  pressedWallGrab: 0
   walkDirection: {x: 0, y: 0}
   rb: {fileID: 391439285}
   walkSpeed: 10
