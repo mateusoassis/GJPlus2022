@@ -26,8 +26,17 @@ public class MainMenuSceneChanges : MonoBehaviour
     {
         if(!optionsMenuScript.optionsOpen)
         {
-            playerInfo.ContinueGame();
-            ChangeToScene(1);
+            if(!playerInfo.noIntroduction)
+            {
+                ChangeToScene(2);
+                playerInfo.DisableIntroductionAfterThis();
+            }
+            else
+            {
+                playerInfo.ContinueGame();
+                ChangeToScene(1);    
+            }
+            
         }
     }
 

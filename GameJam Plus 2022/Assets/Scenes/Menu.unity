@@ -2346,6 +2346,7 @@ MonoBehaviour:
   sceneNames:
   - Menu
   - Scene1
+  - Introduction
   optionsMenuScript: {fileID: 1675550070}
   playerInfo: {fileID: 11400000, guid: 36c5ec7664ee29747a6275072cbfb184, type: 2}
 --- !u!1 &1727066380
