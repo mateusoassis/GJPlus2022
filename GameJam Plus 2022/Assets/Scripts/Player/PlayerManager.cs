@@ -323,8 +323,8 @@ public class PlayerManager : MonoBehaviour
                 anim.SetBool("jumping", true);
                 anim.SetBool("dashing", false);
                 */
-                StopCoroutine(DisableMovement(0));
-                StartCoroutine(DisableMovement(.1f));
+                //StopCoroutine(DisableMovement(0));
+                //StartCoroutine(DisableMovement(.1f));
 
                 //Vector2 wallDir = colScript.onRightWall ? Vector2.left : Vector2.right;
 
