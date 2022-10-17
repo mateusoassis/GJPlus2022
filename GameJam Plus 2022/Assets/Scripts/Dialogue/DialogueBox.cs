@@ -6,19 +6,22 @@ using TMPro;
 
 public class DialogueBox : MonoBehaviour
 {
-    [SerializeField] private bool callNextPetPosition;
-    [SerializeField] private int petPositionIndex;
     [Header("Referências")]
-    private CanvasGroup canvasGroup;
-    private GameObject canvasGroupObject;
-    private TextMeshProUGUI dialogueText;
+    //private CanvasGroup canvasGroup;
+    //private GameObject canvasGroupObject;
+    [SerializeField] private TextMeshProUGUI dialogueText;
     //public GameManager gameManager;
+
+    [Header("Botão para skipar")]
+    public KeyCode skipButton1;
+    public KeyCode skipButton2;
 
     [Header("Texto")]
     public string[] dialogueString;
     public float typeInterval;
     public float skipDuration;
     private float skipTimer;
+    [SerializeField] private bool disableAfterEnd;
 
     [Header("Ignore abaixo")]
     private int index;
@@ -28,23 +31,24 @@ public class DialogueBox : MonoBehaviour
     
     void Awake()
     {
-        canvasGroupObject = GameObject.Find("TutorialWindowContainer");
-        canvasGroup = canvasGroupObject.GetComponent<CanvasGroup>();
-        dialogueText = GameObject.Find("DialogoTexto").GetComponent<TextMeshProUGUI>();
+        //canvasGroupObject = GameObject.Find("TutorialWindowContainer");
+        // = canvasGroupObject.GetComponent<CanvasGroup>();
+        //dialogueText = GameObject.Find("DialogoTexto").GetComponent<TextMeshProUGUI>();
         //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         skipTimer = skipDuration;
+        canSkip = false;
+        dialogueText.text = string.Empty;
     }
 
     void Start()
     {
-        canSkip = false;
-        dialogueText.text = string.Empty;
-        canvasGroupObject.SetActive(false);
+        
+        //canvasGroupObject.SetActive(false);
     }
 
     void Update()
     {
-        if((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F)) && canSkip)
+        if((Input.GetKeyDown(skipButton1) || Input.GetKeyDown(skipButton2) && canSkip))
         {
             if(dialogueText.text == dialogueString[index])
             {
@@ -70,7 +74,6 @@ public class DialogueBox : MonoBehaviour
                 canSkip = true;
             }
         }
-        
     }
 
     public void RefreshSkipTimer()
@@ -84,8 +87,8 @@ public class DialogueBox : MonoBehaviour
         dialogueText.text = string.Empty;
         started = true;
         //gameManager.PauseForDialogue();
-        canvasGroupObject.SetActive(true);
-        canvasGroup.alpha = 1;
+        //canvasGroupObject.SetActive(true);
+        //canvasGroup.alpha = 1;
         index = 0;
         StartCoroutine(TypeDialogue());
     }
@@ -111,15 +114,18 @@ public class DialogueBox : MonoBehaviour
         else
         {
             //gameManager.SoundButton();
-            canvasGroup.alpha = 0;
-            canvasGroupObject.SetActive(false);
+            //canvasGroup.alpha = 0;
+            //canvasGroupObject.SetActive(false);
             //gameManager.ResumeForDialogue();
             ended = true;
-            if(callNextPetPosition)
-            {
+            //if(callNextPetPosition)
+            //{
                 //gameManager.playerManager.petHandler.NextPetPosition(petPositionIndex);
+            //}
+            if(disableAfterEnd)
+            {
+                gameObject.SetActive(false);
             }
-            gameObject.SetActive(false);
         }
     }
 }

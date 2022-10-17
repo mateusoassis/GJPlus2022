@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2840808506b92234396ffff5c8dc5276, type: 3}
   m_Name: PlayerInfo
   m_EditorClassIdentifier: 
-  checkpointReached: 0
+  checkpointReached: 2
+  loadSound: 0

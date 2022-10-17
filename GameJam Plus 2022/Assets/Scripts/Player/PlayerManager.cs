@@ -33,6 +33,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float lowJumpMultiplier;
     [SerializeField] private bool fallGravity;
     [SerializeField] private float targetGravity;
+    public int jumpCount;
+    public int maxJump;
     
     [Header("Wall Jump")]
     [SerializeField] private Vector2 wallJumpDir;
@@ -60,27 +62,45 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         localScaleSaved = anim.gameObject.transform.localScale;
+        jumpCount = 0;
     }
 
     void Update()
     {
         FallGravityModifier();
-        HandleInputs();
         HandleAnimations();
+        HandleInputs();
+        //HandleAnimations();
         HandleFlipXScale();
         
         Walk(walkDirection);
+
+        if((Input.GetKeyUp(wallGrabKey) || !colScript.onWall || !canMove) || jumping)
+        {
+            anim.SetBool("wallgrab", false);
+            wallGrabbed = false;
+            wallSlide = false;
+            stamHandler.StopDegen();
+            jumpCount = 0;
+        }
 
         if(colScript.onWall && Input.GetKey(wallGrabKey) && canMove)
         {
             if(stamHandler.currentStamina > 0)
             {
+                if(!wallGrabbed)
+                {
+                    audio.PlayOneShot("WallGrab");
+                }
                 wallGrabbed = true;
+                
                 anim.SetBool("idle", false);
                 anim.SetBool("walking", false);
                 anim.SetBool("wallgrab", true);
                 anim.SetBool("jumping", false);
                 anim.SetBool("dashing", false);
+                
+                //audio.PlayOneShot("WallGrab");
                 wallSlide = false;
                 jumping = false;
                 stamHandler.StartDegen();
@@ -89,15 +109,6 @@ public class PlayerManager : MonoBehaviour
             {
                 wallGrabbed = false;
             }
-
-        }
-
-        if((Input.GetKeyUp(wallGrabKey) || !colScript.onWall || !canMove))
-        {
-            wallGrabbed = false;
-            wallSlide = false;
-            stamHandler.StopDegen();
-            anim.SetBool("wallgrab", false);
         }
 
         if(colScript.onGround && !isDashing)
@@ -124,28 +135,34 @@ public class PlayerManager : MonoBehaviour
         {
             if(xInput != 0 && !wallGrabbed)
             {
-                wallSlide = true;
+                //wallSlide = true;
                 jumping = false;
-                WallSlide();
+                //WallSlide();
             }
         }
         
 
         if(Input.GetKeyDown(jumpKey))
         {
-            if(colScript.onGround)
+            if(jumpCount < maxJump)
             {
-                Jump(Vector2.up, false);
-                jumping = true;
-                wallGrabbed = false;
-                wallSlide = false;
-                stamHandler.StopDegen();
+                if(colScript.onGround)
+                {
+                    jumpCount++;
+                    Jump(Vector2.up, false);
+                    jumping = true;
+                    wallGrabbed = false;
+                    wallSlide = false;
+                    stamHandler.StopDegen();
+                }
+                else if(colScript.onWall && !colScript.onGround && wallGrabbed)
+                {
+                    WallJump();
+                    jumpCount++;
+                    jumping = true;
+                }
             }
-            if(colScript.onWall && !colScript.onGround)
-            {
-                WallJump();
-                jumping = true;
-            }
+            
         }
 
         if(Input.GetKeyDown(dashKey) && !hasDashed && (colScript.onGround || colScript.onWall))
@@ -154,7 +171,7 @@ public class PlayerManager : MonoBehaviour
             {
                 if(xRawInput != 0 || yRawInput != 0)
                 {
-                    Dash(xRawInput, yRawInput, true);
+                    Dash(xRawInput, 0, true);
                     stamHandler.CastDash();
                 }
                 else
@@ -194,6 +211,7 @@ public class PlayerManager : MonoBehaviour
         isDashing = false;
         jumping = false;
         anim.SetBool("falling", false);
+        //jumpCount = 0;
     }
 
     private void Dash(float x, float y, bool dashing)
@@ -208,6 +226,7 @@ public class PlayerManager : MonoBehaviour
             anim.SetBool("wallgrab", false);
             anim.SetBool("jumping", false);
             anim.SetBool("dashing", true);
+            audio.PlayOneShot("DashSound");
         }
         else
         {
@@ -298,6 +317,8 @@ public class PlayerManager : MonoBehaviour
                 //Vector2 wallDir = colScript.onRightWall ? Vector2.left : Vector2.right;
 
                 Jump((Vector2.up / 1.5f/* + wallDir / 1.5f*/), true);
+
+                anim.SetBool("jumping", true);
                 
                 wallJumped = false;
                 stamHandler.CastJump();
@@ -325,6 +346,7 @@ public class PlayerManager : MonoBehaviour
 
     private void WallSlide()
     {
+        /*
         if(!canMove)
         {
             return;
@@ -345,6 +367,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         rb.velocity = new Vector2(push, -slideSpeed);
+        */
     }
 
     private void Walk(Vector2 direction)
@@ -402,6 +425,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(colScript.onGround)
         {
+            jumpCount = 0;
             if(xInput == 0 && !isDashing && !jumping)
             {
                 anim.SetBool("idle", true);
@@ -421,10 +445,26 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            if(jumping && rb.velocity.y < 0)
+            if(jumping)
             {
-                anim.SetBool("jumping", false);
-                anim.SetBool("falling", true);
+                if(rb.velocity.y < 0)
+                {
+                    anim.SetBool("idle", false);
+                    anim.SetBool("walking", false);
+                    anim.SetBool("wallgrab", false);
+                    anim.SetBool("jumping", false);
+                    anim.SetBool("dashing", false);
+                    anim.SetBool("falling", true);
+                }
+                else
+                {
+                    anim.SetBool("idle", false);
+                    anim.SetBool("walking", false);
+                    anim.SetBool("wallgrab", false);
+                    anim.SetBool("jumping", true);
+                    anim.SetBool("dashing", false);
+                    anim.SetBool("falling", false);
+                }
             }
             else if(wallGrabbed && !groundTouch && !jumping)
             {
@@ -436,11 +476,22 @@ public class PlayerManager : MonoBehaviour
             }
             else if(wallJumped && !groundTouch)
             {
-                anim.SetBool("idle", false);
-                anim.SetBool("walking", false);
-                anim.SetBool("wallgrab", false);
-                anim.SetBool("jumping", false);
-                anim.SetBool("dashing", true);
+                if(jumping)
+                {
+                    anim.SetBool("idle", false);
+                    anim.SetBool("walking", false);
+                    anim.SetBool("wallgrab", false);
+                    anim.SetBool("jumping", true);
+                    anim.SetBool("dashing", false);
+                }
+                if(!groundTouch)
+                {
+                    anim.SetBool("idle", false);
+                    anim.SetBool("walking", false);
+                    anim.SetBool("wallgrab", false);
+                    anim.SetBool("jumping", false);
+                    anim.SetBool("dashing", true);
+                }  
             }
             if(!jumping && !groundTouch)
             {

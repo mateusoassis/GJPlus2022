@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class FadeoutManager : MonoBehaviour
 {
+    /*
     [SerializeField] private GameObject loseGameFade;
     [SerializeField] private float loseGameFadeDuration;
     [SerializeField] private GameObject newGameFade;
@@ -13,7 +14,15 @@ public class FadeoutManager : MonoBehaviour
 
     [SerializeField] private YouLose youLoseScript;
     [SerializeField] private PauseManager pauseManager;
+    */
+    [SerializeField] private GameObject newGameTransition;
 
+    void Start()
+    {
+        newGameTransition.SetActive(true);
+    }
+
+    /*
     void Start()
     {
         startTimer = newGameFadeDuration;
@@ -39,4 +48,5 @@ public class FadeoutManager : MonoBehaviour
             pauseManager.gamePaused = true;
         }
     }
+    */
 }

@@ -7,6 +7,7 @@ public class MainMenuSceneChanges : MonoBehaviour
 {
     [SerializeField] private string[] sceneNames;
     [SerializeField] private OptionsMenu optionsMenuScript;
+    [SerializeField] private PlayerInfo playerInfo;
 
     private void ChangeToScene(int i)
     {
@@ -25,6 +26,7 @@ public class MainMenuSceneChanges : MonoBehaviour
     {
         if(!optionsMenuScript.optionsOpen)
         {
+            playerInfo.ContinueGame();
             ChangeToScene(1);
         }
     }

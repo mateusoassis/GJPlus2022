@@ -13,12 +13,12 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        currentYDistance = player.transform.position.y - transform.position.y;
+        currentYDistance = transform.position.y - player.transform.position.y;
 
         if(cameraMove)
         {
             LerpCameraY();
-            if(currentYDistance >= maxYDistance)
+            if(currentYDistance < maxYDistance)
             {
                 cameraMove = false;
             }
