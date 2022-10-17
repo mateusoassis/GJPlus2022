@@ -11,7 +11,8 @@ public class CollisionChecking : MonoBehaviour
     public bool onRightWall;
     public bool onLeftWall;
     [SerializeField] private float collisionRadius;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask normalGroundLayer;
+    [SerializeField] private LayerMask grabbableGroundLayer;
     
     void Start()
     {
@@ -21,9 +22,9 @@ public class CollisionChecking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer); 
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
+        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, normalGroundLayer);
+        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, grabbableGroundLayer); 
+        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, grabbableGroundLayer);
         if(onRightWall || onLeftWall)
         {
             onWall = true;
