@@ -62,8 +62,17 @@ public class StaminaHandler : MonoBehaviour
 
     public void UpdateImageFillAmount()
     {
-        imageFillAmount = currentStamina / maxStamina;
-        image.fillAmount = imageFillAmount;
+        if(currentStamina < maxStamina)
+        {
+            image.enabled = true;
+            imageFillAmount = currentStamina / maxStamina;
+            image.fillAmount = imageFillAmount;
+        }
+        else
+        {
+            currentStamina = 100;
+            image.enabled = false;
+        }  
     }
 
     public void CastDash()
