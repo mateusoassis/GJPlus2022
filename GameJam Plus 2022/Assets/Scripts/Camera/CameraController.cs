@@ -10,6 +10,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] private bool cameraMove;
     [SerializeField] private float targetY;
     [SerializeField] private float lerpCamera;
+    private float savedStartY;
+
+    void Start()
+    {
+        savedStartY = transform.position.x;
+    }
 
     void Update()
     {
@@ -32,7 +38,7 @@ public class CameraController : MonoBehaviour
 
     private void LerpCameraY()
     {
-        Vector3 targetPos = new Vector3(transform.position.x, targetY, transform.position.z);
+        Vector3 targetPos = new Vector3(transform.position.x, Mathf.Clamp(targetY, savedStartY, Mathf.Infinity), transform.position.z);
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * lerpCamera);
     }
 }
