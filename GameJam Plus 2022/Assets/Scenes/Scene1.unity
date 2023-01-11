@@ -18003,7 +18003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seeCollisionGizmos: 1
-  bottomOffset: {x: 0, y: -0.9}
+  bottomOffset: {x: 0, y: -0.8}
   rightOffset: {x: 0.19, y: 0.67}
   leftOffset: {x: -0.19, y: 0.67}
   onGround: 1
@@ -78473,7 +78473,7 @@ MonoBehaviour:
   currentYDistance: 0
   cameraMove: 0
   targetY: 0
-  lerpCamera: 3.5
+  lerpCamera: 6
 --- !u!81 &1826032411
 AudioListener:
   m_ObjectHideFlags: 0

@@ -168,6 +168,10 @@ public class PlayerManager : MonoBehaviour
             }
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
+        else if(colScript.onGround && !jumping && !colScript.onWall)
+        {
+            rb.gravityScale = 0;
+        }
         else
         {
             rb.gravityScale = targetGravity;
