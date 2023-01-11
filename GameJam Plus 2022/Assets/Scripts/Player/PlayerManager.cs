@@ -415,7 +415,7 @@ public class PlayerManager : MonoBehaviour
         xRawInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxis("Vertical");
         yRawInput = Input.GetAxisRaw("Vertical");
-        walkDirection = new Vector2(xInput, yInput);
+        walkDirection = new Vector2(xRawInput, yRawInput);
     }
 
     private void WallJump()
@@ -549,7 +549,7 @@ public class PlayerManager : MonoBehaviour
         if(colScript.onGround)
         {
             jumpCount = 0;
-            if(xInput == 0 && !isDashing && !jumping)
+            if(xRawInput == 0 && !isDashing && !jumping)
             {
                 anim.SetBool("idle", true);
                 anim.SetBool("walking", false);
@@ -557,7 +557,7 @@ public class PlayerManager : MonoBehaviour
                 anim.SetBool("jumping", false);
                 anim.SetBool("dashing", false);
             }
-            else if(xInput != 0 && !isDashing && !jumping)
+            else if(xRawInput != 0 && !isDashing && !jumping)
             {
                 anim.SetBool("idle", false);
                 anim.SetBool("walking", true);
