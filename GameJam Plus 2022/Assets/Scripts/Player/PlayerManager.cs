@@ -98,7 +98,6 @@ public class PlayerManager : MonoBehaviour
         FallGravityModifier();
         HandleAnimations();
         HandleInputs();
-        //HandleAnimations();
         HandleFlipXScale();
         
         Walk(walkDirection);
@@ -114,7 +113,7 @@ public class PlayerManager : MonoBehaviour
 
         CheckWallGrabBuffer();
 
-        if(/*colScript.onWall && */(Input.GetKeyDown(wallGrabKey1) || Input.GetKeyDown(wallGrabKey2)) && canMove)
+        if((Input.GetKeyDown(wallGrabKey1) || Input.GetKeyDown(wallGrabKey2)) && canMove)
         {
             if(!pauseManagerScript.gamePaused)
             {
@@ -124,33 +123,7 @@ public class PlayerManager : MonoBehaviour
                     Debug.Log("pressedwallgrab = true");
                     pressedWallGrab = true;
                 }
-                /*
-                if(stamHandler.currentStamina > 0)
-                {
-                    if(!wallGrabbed)
-                    {
-                        audio.PlayOneShot("WallGrab");
-                    }
-                    wallGrabbed = true;
-                    
-                    anim.SetBool("idle", false);
-                    anim.SetBool("walking", false);
-                    anim.SetBool("wallgrab", true);
-                    anim.SetBool("jumping", false);
-                    anim.SetBool("dashing", false);
-                    
-                    //audio.PlayOneShot("WallGrab");
-                    wallSlide = false;
-                    jumping = false;
-                    stamHandler.StartDegen();
-                }
-                else
-                {
-                    wallGrabbed = false;
-                }
-                */
-            }
-            
+            }    
         }
 
         if(colScript.onGround && !isDashing)
@@ -181,9 +154,7 @@ public class PlayerManager : MonoBehaviour
         {
             if(xInput != 0 && !wallGrabbed)
             {
-                //wallSlide = true;
                 jumping = false;
-                //WallSlide();
             }
         }
         
@@ -279,20 +250,7 @@ public class PlayerManager : MonoBehaviour
             anim.SetBool("jumping", false);
             anim.SetBool("dashing", true);
             audio.PlayOneShot("DashSound");
-        }
-        /*
-        else
-        {
-            Debug.Log("jump da parede");
-            anim.SetBool("idle", false);
-            anim.SetBool("walking", false);
-            anim.SetBool("wallgrab", false);
-            anim.SetBool("jumping", true);
-            anim.SetBool("dashing", false);
-            wallGrabbed = false;
-        }
-        */
-        
+        }       
 
         rb.velocity = Vector2.zero;
         Vector2 direction = new Vector2(x, y);
@@ -467,32 +425,6 @@ public class PlayerManager : MonoBehaviour
                 stamHandler.CastDash();
             }
         }
-    }
-
-    private void WallSlide()
-    {
-        /*
-        if(!canMove)
-        {
-            return;
-        }
-        float push;
-        bool pushingWall = false;
-        if((rb.velocity.x > 0 && colScript.onRightWall) || (rb.velocity.x < 0 && colScript.onLeftWall))
-        {
-            pushingWall = true;
-        }
-        if(pushingWall)
-        {
-            push = 0;
-        }
-        else
-        {
-            push = rb.velocity.x;
-        }
-
-        rb.velocity = new Vector2(push, -slideSpeed);
-        */
     }
 
     private void Walk(Vector2 direction)
